@@ -2,15 +2,18 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
+
+    <!-- Mobile Safe Viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>RM Construction | Premium Infrastructure</title>
+
+    <!-- Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
       rel="stylesheet"
     />
+
     <style>
       :root {
         --accent: #ff6b00;
@@ -26,28 +29,34 @@
         box-sizing: border-box;
       }
 
+      /* ✅ FIXED SCROLL */
+      html,
+      body {
+        width: 100%;
+        min-height: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
       body {
         font-family: "Outfit", sans-serif;
         background-color: var(--dark);
         color: var(--white);
-        height: 100vh;
-        width: 100vw;
-        overflow: hidden;
       }
 
-      /* High-End Background with Overlay */
+      /* Main Container */
       .main-container {
-        height: 100%;
+        min-height: 100vh;
         display: flex;
         flex-direction: column;
         background:
           linear-gradient(rgba(26, 18, 11, 0.88), rgba(26, 18, 11, 0.75)),
           url("https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070")
             no-repeat center center/cover;
-        position: relative;
       }
 
-      /* Modern Split Header - Compact */
+      /* Header */
       header {
         background: rgba(255, 255, 255, 0.03);
         backdrop-filter: blur(10px);
@@ -56,80 +65,47 @@
         justify-content: space-between;
         align-items: center;
         border-bottom: 1px solid var(--glass-border);
-        z-index: 100;
-      }
-
-      .logo-box {
-        background: transparent; /* Remove background */
-        padding: 0; /* Remove space */
-        border-radius: 0; /* Remove rounded corners */
-        box-shadow: none; /* Remove shadow */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: auto; /* Let image decide size */
-      }
-
-      .logo-box:hover {
-        transform: none; /* Disable hover effect */
-        box-shadow: none;
       }
 
       .logo-box img {
-        height: 45px; /* Set logo size */
-        width: auto;
-        object-fit: contain;
-        display: block;
+        height: 45px;
       }
 
       .company-title {
-        font-family: "Outfit", sans-serif;
         font-weight: 700;
-        font-size: 3.5rem; /* Bigger text */
+        font-size: 1.3rem;
         text-transform: uppercase;
-        letter-spacing: 2px;
         display: flex;
-        align-items: center;
-        gap: 10px;
-        line-height: 1;
+        gap: 6px;
       }
 
-      /* RM in Accent Color */
       .company-title .rm {
         color: var(--accent);
-        font-weight: 800; /* Extra bold */
+        font-weight: 800;
       }
 
-      /* BUILDCON in Dark/Grey */
-      .company-title .buildcon {
-        color: #fff;
-        font-weight: 700;
-      }
-
-      /* Content Area - Optimized Spacing */
+      /* Content */
       .content-wrapper {
         flex: 1;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
-        padding: 20px 5%;
-        gap: 18px;
+        padding: 25px 5%;
+        gap: 20px;
       }
 
       .hero-section {
         text-align: center;
         max-width: 800px;
-        animation: slideDown 0.8s ease;
       }
 
       .hero-section h1 {
         font-family: "Playfair Display", serif;
-        font-size: clamp(1.9rem, 5.5vh, 3.2rem);
-        line-height: 1.2;
+        font-size: clamp(1.7rem, 5vw, 3rem);
+        line-height: 1.3;
         margin-bottom: 12px;
         font-style: italic;
-        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
       }
 
       .hero-section p {
@@ -137,11 +113,10 @@
         text-transform: uppercase;
         letter-spacing: 2px;
         font-size: 0.85rem;
-        font-weight: 600;
         margin-bottom: 8px;
       }
 
-      /* Trust Banner */
+      /* Trust */
       .trust-banner {
         background: rgba(255, 107, 0, 0.12);
         border: 1px dashed var(--accent);
@@ -150,83 +125,53 @@
         font-size: 0.85rem;
         display: inline-flex;
         align-items: center;
-        gap: 10px;
-        margin-top: 8px;
-        transition: all 0.3s ease;
+        gap: 8px;
       }
 
-      .trust-banner:hover {
-        background: rgba(255, 107, 0, 0.18);
-        border-style: solid;
-      }
-
-      /* Stats Section */
+      /* Stats */
       .stats-section {
         display: flex;
-        gap: 18px;
-        margin: 8px 0;
-        animation: fadeIn 1s ease 0.3s both;
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
       }
 
       .stat-box {
         background: rgba(255, 107, 0, 0.1);
-        backdrop-filter: blur(10px);
         border: 1px solid rgba(255, 107, 0, 0.35);
-        padding: 18px 30px;
-        border-radius: 18px;
+        padding: 15px 25px;
+        border-radius: 16px;
         text-align: center;
-        min-width: 115px;
-        transition: all 0.3s ease;
-      }
-
-      .stat-box:hover {
-        background: rgba(255, 107, 0, 0.15);
-        transform: translateY(-3px);
-        box-shadow: 0 8px 20px rgba(255, 107, 0, 0.2);
+        min-width: 100px;
       }
 
       .stat-number {
-        font-size: 2rem;
+        font-size: 1.7rem;
         font-weight: 800;
         color: var(--accent);
-        line-height: 1;
-        margin-bottom: 5px;
-        text-shadow: 0 2px 8px rgba(255, 107, 0, 0.3);
       }
 
       .stat-label {
         font-size: 0.7rem;
-        text-transform: uppercase;
-        letter-spacing: 1.5px;
-        color: rgba(255, 255, 255, 0.75);
-        font-weight: 500;
+        letter-spacing: 1.2px;
       }
 
-      /* Modern Glass Cards */
+      /* Grid */
       .grid-layout {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 18px;
         width: 100%;
-        max-width: 620px;
-        margin-top: 10px;
+        max-width: 650px;
       }
 
       .glass-card {
         background: var(--glass);
         backdrop-filter: blur(15px);
-        padding: 24px;
-        border-radius: 24px;
+        padding: 22px;
+        border-radius: 22px;
         border: 1px solid var(--glass-border);
         position: relative;
-        overflow: hidden;
-        transition: all 0.3s ease;
-      }
-
-      .glass-card:hover {
-        background: rgba(255, 255, 255, 0.13);
-        transform: translateY(-3px);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
       }
 
       .glass-card::before {
@@ -237,31 +182,21 @@
         width: 4px;
         height: 100%;
         background: var(--accent);
-        box-shadow: 0 0 10px var(--accent);
       }
 
       .glass-card h3 {
-        font-size: 0.98rem;
-        margin-bottom: 16px;
+        font-size: 0.95rem;
+        margin-bottom: 14px;
         text-transform: uppercase;
-        letter-spacing: 1.5px;
         color: var(--accent);
-        font-weight: 700;
       }
 
       .list-item {
         display: flex;
         align-items: center;
-        gap: 12px;
+        gap: 10px;
         font-size: 0.9rem;
-        margin-bottom: 10px;
-        color: rgba(255, 255, 255, 0.88);
-        transition: all 0.2s ease;
-      }
-
-      .list-item:hover {
-        color: rgba(255, 255, 255, 1);
-        transform: translateX(3px);
+        margin-bottom: 8px;
       }
 
       .dot {
@@ -269,183 +204,106 @@
         height: 6px;
         background: var(--accent);
         border-radius: 50%;
-        flex-shrink: 0;
-        box-shadow: 0 0 6px var(--accent);
       }
 
-      /* Footer CTA */
+      /* Footer */
       footer {
-        padding: 18px 20px;
+        padding: 20px;
         text-align: center;
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
       }
 
       .cta-btn {
         display: inline-flex;
         align-items: center;
-        gap: 12px;
+        gap: 10px;
         background: #25d366;
         color: white;
         text-decoration: none;
-        padding: 17px 42px;
+        padding: 16px 38px;
         border-radius: 100px;
         font-weight: 600;
-        font-size: 0.95rem;
-        box-shadow: 0 10px 30px rgba(37, 211, 102, 0.35);
-        transition: all 0.3s ease;
-      }
-
-      .cta-btn:active {
-        transform: scale(0.95);
+        box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
       }
 
       .cta-btn:hover {
         background: #20c55a;
-        box-shadow: 0 14px 40px rgba(37, 211, 102, 0.5);
-        transform: translateY(-2px);
       }
 
-      @keyframes slideDown {
-        from {
-          opacity: 0;
-          transform: translateY(-20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: scale(0.95);
-        }
-        to {
-          opacity: 1;
-          transform: scale(1);
-        }
-      }
-
-      /* Mobile Adjustments */
+      /* Mobile */
       @media (max-width: 480px) {
-        .grid-layout {
-          grid-template-columns: 1fr;
-          gap: 16px;
-        }
-        .hero-section h1 {
-          font-size: 1.7rem;
-        }
-        .stats-section {
-          flex-wrap: wrap;
-          justify-content: center;
-          gap: 12px;
-        }
-        .stat-box {
-          min-width: 95px;
-          padding: 14px 22px;
-        }
-        .stat-number {
-          font-size: 1.6rem;
-        }
         .company-title {
-          font-size: 0.75rem;
+          font-size: 0.9rem;
         }
-      }
 
-      @media (max-height: 750px) {
-        .content-wrapper {
-          gap: 12px;
-          padding: 15px 5%;
-        }
-        .glass-card {
-          padding: 20px;
-        }
         .hero-section h1 {
-          margin-bottom: 8px;
           font-size: 1.6rem;
-        }
-        .stats-section {
-          margin: 5px 0;
-          gap: 14px;
-        }
-        .stat-box {
-          padding: 14px 24px;
-        }
-        .stat-number {
-          font-size: 1.6rem;
-        }
-        .grid-layout {
-          gap: 15px;
-          margin-top: 8px;
-        }
-      }
-
-      @media (max-height: 670px) {
-        .stats-section {
-          display: none;
-        }
-        .content-wrapper {
-          gap: 10px;
-        }
-        .grid-layout {
-          margin-top: 5px;
         }
       }
     </style>
   </head>
+
   <body>
     <div class="main-container">
+      <!-- Header -->
       <header>
         <div class="logo-box">
-          <img src="logo.png" alt="RM Construction Logo" />
+          <img src="logo.png" alt="RM Logo" />
         </div>
+
         <div class="company-title">
           <span class="rm">RM</span>
-          <span class="buildcon">BUILDCON</span>
+          <span>BUILDCON</span>
         </div>
       </header>
 
+      <!-- Content -->
       <main class="content-wrapper">
         <div class="hero-section">
           <p>Premium Infrastructure Solutions</p>
+
           <h1>Building Architectural Excellence with Precision.</h1>
-          <div class="trust-banner">
-            <span>★</span> 100% Reliability & On-Time Project Delivery
-          </div>
+
+          <div class="trust-banner">★ 100% Reliability & On-Time Delivery</div>
         </div>
 
-        <!-- Stats Section -->
+        <!-- Stats -->
         <div class="stats-section">
           <div class="stat-box">
             <div class="stat-number">15+</div>
             <div class="stat-label">Years</div>
           </div>
+
           <div class="stat-box">
             <div class="stat-number">200+</div>
             <div class="stat-label">Projects</div>
           </div>
+
           <div class="stat-box">
             <div class="stat-number">100%</div>
             <div class="stat-label">Satisfied</div>
           </div>
         </div>
 
+        <!-- Cards -->
         <div class="grid-layout">
           <div class="glass-card">
             <h3>Core Expertise</h3>
+
             <div class="list-item">
               <div class="dot"></div>
               Civil Engineers & Architects
             </div>
+
             <div class="list-item">
               <div class="dot"></div>
               Structural Planning
             </div>
+
             <div class="list-item">
               <div class="dot"></div>
               Execution Excellence
             </div>
+
             <div class="list-item">
               <div class="dot"></div>
               Transparent Costing
@@ -454,18 +312,22 @@
 
           <div class="glass-card">
             <h3>Our Services</h3>
+
             <div class="list-item">
               <div class="dot"></div>
               Residential Houses
             </div>
+
             <div class="list-item">
               <div class="dot"></div>
               Commercial Projects
             </div>
+
             <div class="list-item">
               <div class="dot"></div>
               Turnkey Solutions
             </div>
+
             <div class="list-item">
               <div class="dot"></div>
               Quality Assurance
@@ -475,7 +337,12 @@
       </main>
 
       <footer>
-        <a href="https://wa.me/919783454645" class="cta-btn">
+        <a
+          href="https://wa.me/919783454645?text=Hello%20RM%20Buildcon%2C%20I%20am%20interested%20in%20your%20construction%20services"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="cta-btn"
+        >
           <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
             <path
               d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.417-.003 6.557-5.338 11.892-11.893 11.892-1.997-.001-3.951-.5-5.688-1.448l-6.305 1.652zm6.599-3.835c1.406.836 2.757 1.258 4.254 1.258 5.409 0 9.812-4.403 9.814-9.814.001-2.621-1.022-5.086-2.871-6.938-1.847-1.847-4.31-2.87-6.932-2.87-5.41 0-9.813 4.403-9.816 9.813 0 1.582.451 2.91 1.303 4.15l-.973 3.556 3.655-.959zm10.707-7.25c-.267-.134-1.579-.779-1.824-.867-.245-.089-.423-.134-.601.134-.178.267-.69.867-.846 1.045-.156.178-.312.2-.578.066-.267-.133-1.127-.415-2.147-1.325-.794-.708-1.33-1.582-1.486-1.848-.156-.267-.017-.411.116-.544.12-.12.267-.312.4-.468.134-.156.178-.267.267-.445.089-.178.044-.334-.022-.468-.067-.134-.601-1.448-.824-1.983-.217-.525-.456-.453-.625-.461-.16-.007-.343-.008-.527-.008-.184 0-.485.07-.739.345-.253.276-.967.947-.967 2.306 0 1.359.987 2.67 1.125 2.848.138.178 1.941 2.964 4.702 4.157.656.283 1.169.452 1.568.578.658.209 1.258.179 1.731.109.527-.078 1.579-.645 1.802-1.27.223-.625.223-1.159.156-1.27-.067-.111-.245-.178-.512-.312z"
