@@ -60,7 +60,7 @@
       header {
         background: rgba(255, 255, 255, 0.03);
         backdrop-filter: blur(10px);
-        padding: 12px 6%;
+        padding: 8px 3%;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -68,20 +68,32 @@
       }
 
       .logo-box img {
-        height: 45px;
+        height: 80px;
+        width: 80px;
       }
 
       .company-title {
-        font-weight: 700;
-        font-size: 1.3rem;
-        text-transform: uppercase;
         display: flex;
-        gap: 6px;
+        align-items: center;
+        gap: 8px;
+        font-weight: 900;
+        font-size: 2.2rem; /* bigger for visibility */
+        text-transform: uppercase;
+        letter-spacing: 2px; /* gives spacing for bold look */
+        color: #fff;
+        text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5); /* subtle glow for readability */
+        margin-top: 16px;
       }
 
       .company-title .rm {
-        color: var(--accent);
+        color: var(--accent); /* keep the accent color */
+        font-size: 1.7rem; /* slightly larger than BUILDCON for emphasis */
+      }
+
+      .company-title .buildcon {
+        color: #ffffff; /* bright white for contrast */
         font-weight: 800;
+        font-size: 1.7rem;
       }
 
       /* Content */
@@ -253,7 +265,7 @@
 
         <div class="company-title">
           <span class="rm">RM</span>
-          <span>BUILDCON</span>
+          <span class="buildcon">BUILDCON</span>
         </div>
       </header>
 
